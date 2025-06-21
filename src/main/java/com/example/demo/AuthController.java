@@ -23,7 +23,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody User user) {
         userService.register(user);
-        return ResponseEntity.ok("User registered successfully");
+        return ResponseEntity.ok("Email sent successfully");
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -36,10 +36,5 @@ public class AuthController {
                         fieldError -> fieldError.getDefaultMessage()
                 ));
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
-    }
-
-    @ExceptionHandler(com.example.demo.ValidationException.class) // Fully qualified name to avoid ambiguity
-    public ResponseEntity<Map<String, String>> handleCustomValidationExceptions(com.example.demo.ValidationException ex) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getErrors());
     }
 }

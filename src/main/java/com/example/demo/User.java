@@ -1,17 +1,8 @@
 package com.example.demo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.*;
-import org.hibernate.validator.constraints.Length;
 
-@Entity
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @NotBlank(message = "Name is mandatory")
     private String name;
@@ -23,25 +14,10 @@ public class User {
     @NotBlank(message = "Mobile number is mandatory")
     @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number must be 10 digits")
     private String mobile;
+
     private String preference;
 
-    public String getPreference() {
-        return preference;
-    }
-
-    public void setPreference(String preference) {
-        this.preference = preference;
-    }
-
-    // getters and setters remain the same
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
+    // Getters and Setters
     public String getName() {
         return name;
     }
@@ -50,12 +26,12 @@ public class User {
         this.name = name;
     }
 
-    public Long getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getMobile() {
@@ -64,5 +40,13 @@ public class User {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public String getPreference() {
+        return preference;
+    }
+
+    public void setPreference(String preference) {
+        this.preference = preference;
     }
 }
